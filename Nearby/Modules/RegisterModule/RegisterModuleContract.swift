@@ -47,7 +47,6 @@ protocol PresenterToInteractorRegisterModuleProtocol {
 protocol InteractorToPresenterRegisterModuleProtocol {
     //iteractor returns a response to createAcc func
     func didRecieve(result: Result<Void, Error>)
-    // in success
     func didCreateAccount(with Login: String)
 }
 

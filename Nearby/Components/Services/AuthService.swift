@@ -49,8 +49,7 @@ class AuthService {
                     if let token = json["token"] as? String {
                         completion(.success(print("TOKEN \(token)")))
                         self.authToken = token
-                        print("TOKEN \(token)")
-                        self.getLocations()
+                        LocationService.shared.authToken = token
                     }
                 }
             } catch let error {
@@ -63,44 +62,6 @@ class AuthService {
 
 
     var locations = [Location]()
-    func getLocations() -> [Location] {
-        let urlTwo = URL(string: "http://147.78.66.203:3210/locations")!
-        var requestTwo = URLRequest(url: urlTwo)
-        requestTwo.httpMethod = "GET"
-
-        guard let token = authToken else {
-            print("Token is not exist")
-            return [Location]()
-        }
-        print("140 TOKEN \(String(describing: token))")
-        requestTwo.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-
-
-        let taskTwo = URLSession.shared.dataTask(with: requestTwo) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
-            }
-            print("DATA \(data)")
-            do {
-                let locations = try JSONDecoder().decode([Location].self, from: data)
-                self.locations = locations
-                for location in locations {
-                    if let latitude = Double(location.point.latitude), let longitude = Double(location.point.longitude) {
-                        print("ID: \(location.id), Name: \(location.name), Latitude: \(latitude), Longitude: \(longitude)")
-                    } else {
-                        print("Error converting latitude/longitude to Double")
-                    }
-                }
-            } catch {
-                print("Error decoding JSON: \(error)")
-            }
-
-        }
-        taskTwo.resume()
-        return locations
-    }
-
 
     func registerButtonPressed(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
         let email = email
@@ -109,7 +70,6 @@ class AuthService {
         let parameters = ["login": email, "password": password]
 
         guard let url = URL(string: "http://147.78.66.203:3210/auth/register") else {
-            print("Invalid URL")
             return
         }
 
@@ -120,28 +80,76 @@ class AuthService {
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
         } catch let error {
-            print("268 \(error.localizedDescription)")
             return
         }
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
                 return
             }
-            print("data: \(data)"  )
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                     if let token = json["token"] as? String {
                         completion(.success( print("TOKEN REGISTER \(token)")))
                         self.authToken = token
-                        self.getLocations()
+                        LocationService.shared.authToken = token
                     }
                 }
             } catch let error {
                 completion(.failure(error))
-                print("286 \(error.localizedDescription)")
             }
         }
         task.resume()
+    }
+}
+
+
+
+
+
+class LocationService {
+    static var shared = LocationService()
+
+    var authToken: String?
+
+    private init() {
+
+    }
+
+    var locations = [Location]()
+    func getLocations(completion: @escaping (Result<[Location], Error>) -> Void) {
+        let urlTwo = URL(string: "http://147.78.66.203:3210/locations")!
+        var requestTwo = URLRequest(url: urlTwo)
+        requestTwo.httpMethod = "GET"
+
+        guard let token = authToken else {
+            print("Token does not exist")
+            completion(.failure(NetworkError.tokenMissing)) // Replace YourErrorType with the actual type of your error
+            return
+        }
+        requestTwo.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+        let taskTwo = URLSession.shared.dataTask(with: requestTwo) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                completion(.failure(NetworkError.invalidURL))
+                return
+            }
+            do {
+                let locations = try JSONDecoder().decode([Location].self, from: data)
+                self.locations = locations
+                for location in locations {
+                    if let latitude = Double(location.point.latitude), let longitude = Double(location.point.longitude) {
+                        print("ID: \(location.id), Name: \(location.name), Latitude: \(latitude), Longitude: \(longitude)")
+                    } else {
+                        print("Error converting latitude/longitude to Double")
+                    }
+                }
+                completion(.success(locations)) // Call completion with the retrieved locations
+            } catch {
+                completion(.failure(error))
+            }
+        }
+        taskTwo.resume()
     }
 
     func getMenuItems(forLocationID id: Int, completion: @escaping (Result<[MenuItem], Error>) -> Void) {
@@ -181,59 +189,6 @@ class AuthService {
             }
         }
         task.resume()
-    }
-}
-
-
-
-
-
-class LocationService {
-    static var shared = LocationService()
-
-    var authToken: String?
-
-    private init() {
-
-    }
-
-    var locations = [Location]()
-    func getLocations() -> [Location] {
-        let urlTwo = URL(string: "http://147.78.66.203:3210/locations")!
-        var requestTwo = URLRequest(url: urlTwo)
-        requestTwo.httpMethod = "GET"
-
-        guard let token = authToken else {
-            print("Token is not exist")
-            return [Location]()
-        }
-        print("140 TOKEN \(String(describing: token))")
-        requestTwo.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-
-
-        let taskTwo = URLSession.shared.dataTask(with: requestTwo) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
-            }
-            print("DATA \(data)")
-            do {
-                let locations = try JSONDecoder().decode([Location].self, from: data)
-                self.locations = locations
-                for location in locations {
-                    if let latitude = Double(location.point.latitude), let longitude = Double(location.point.longitude) {
-                        print("ID: \(location.id), Name: \(location.name), Latitude: \(latitude), Longitude: \(longitude)")
-                    } else {
-                        print("Error converting latitude/longitude to Double")
-                    }
-                }
-            } catch {
-                print("Error decoding JSON: \(error)")
-            }
-
-        }
-        taskTwo.resume()
-        return locations
     }
 
 }

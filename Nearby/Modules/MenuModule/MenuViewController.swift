@@ -94,14 +94,10 @@ extension MenuViewController: MainCollectionManagerDelegate {
 
 
     func selectCell(item: MenuItem, value: Int) {
-        print("item: \(item) value: \(value)")
-//        let newItem = MenuItemOrder(item: item, value: value)
-//        orderItems.append(newItem)
+
         if let existingIndex = orderItems.firstIndex(where: { $0.item.id == item.id }) {
-                // Уже есть выбранный пункт меню, обновляем его значение
                 orderItems[existingIndex].value = value
             } else {
-                // Этот пункт меню ещё не был выбран, добавляем его в заказ
                 orderItems.append(MenuItemOrder(item: item, value: value))
             }
     }

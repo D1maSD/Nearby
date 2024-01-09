@@ -14,21 +14,6 @@ class YourOrderRouter: PresenterToRouterYourOrderProtocol {
     weak var viewController: UIViewController?
     
     // MARK: Static methods
-//    static func createModule() -> BaseViewController {
-//        
-//        let viewController = YourOrderViewController()
-//        
-//        let presenter: ViewToPresenterYourOrderProtocol & InteractorToPresenterYourOrderProtocol = YourOrderPresenter()
-//        
-//        viewController.presenter = presenter
-//        viewController.presenter?.router = YourOrderRouter()
-//        viewController.presenter?.view = viewController
-//        viewController.presenter?.interactor = YourOrderInteractor()
-//        viewController.presenter?.interactor?.presenter = presenter
-//        
-//        return viewController
-//    }
-
     static func createModule(items: [MenuItemOrder]) -> BaseViewController {
 
         print("YourOrderRouter createModule items:  \(items)")
@@ -38,7 +23,6 @@ class YourOrderRouter: PresenterToRouterYourOrderProtocol {
 
         let router = YourOrderRouter()
 
-//        viewController.items = items
         viewController.presenter = presenter
         viewController.presenter?.router = router
         viewController.presenter?.view = viewController

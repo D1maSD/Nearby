@@ -14,4 +14,17 @@ class MapInteractor: PresenterToInteractorMapProtocol {
     // MARK: Properties
     var presenter: InteractorToPresenterMapProtocol?
     var places: [MKAnnotation]?
+    var locations: [Location] = []
+    func getItems(completion: @escaping ([Location]) -> Void) {
+        LocationService.shared.getLocations { result in
+            switch result {
+                case .success(let locations):
+                    self.locations = locations
+                    completion(locations)
+                case .failure(let failure):
+                    print("Error: \(failure)")
+                    completion([Location]())
+            }
+        }
+    }
 }

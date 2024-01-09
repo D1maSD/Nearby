@@ -24,6 +24,7 @@ protocol ViewToPresenterMapProtocol {
 
     func presentAboutPlaceScreen(_ object: Objects, with places: IndexPath)
     func backButtonTapped()
+    func getItems(completion: @escaping ([Location]) -> Void)
 }
 
 
@@ -31,6 +32,7 @@ protocol ViewToPresenterMapProtocol {
 protocol PresenterToInteractorMapProtocol {
     
     var presenter: InteractorToPresenterMapProtocol? { get set }
+    func getItems(completion: @escaping ([Location]) -> Void)
 }
 
 

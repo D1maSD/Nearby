@@ -13,10 +13,19 @@ class NearestPlacesViewController: BaseControllerWithHeader {
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getItems()
         configureTableView()
         setupUI()
         setupLayout()
+    }
+
+    private func getItems() {
+        presenter?.getItems { locations in
+            self.locations = locations
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
 
     init() {
@@ -89,15 +98,15 @@ extension NearestPlacesViewController: PresenterToViewNearestPlacesProtocol{
 extension NearestPlacesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        locations = presenter?.getItems() ?? [Location]()
         let cell: PlaceItemCell = tableView.dequeueReusableCell(for: indexPath)
         cell.selectionStyle = .none
         cell.title.text = locations[indexPath.row].name
         return cell
     }
 
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.numberOfRowsInSection() ?? 0
+        locations.count
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

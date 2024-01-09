@@ -6,7 +6,6 @@
 //
 
 import UIKit
-//import UseCases
 
 protocol MainCollectionManagerDelegate: AnyObject {
     func selectCell(category: CategoryModel)
@@ -37,7 +36,7 @@ final class MainCollectionManager: NSObject, MainCollectionManagment {
     }()
 
     func attach(_ collectionView: UICollectionView, id: Int) {
-            AuthService.shared.getMenuItems(forLocationID: id) { result in
+        LocationService.shared.getMenuItems(forLocationID: id) { result in
                 switch result {
                 case .success(let menuItems):
                     DispatchQueue.main.async {

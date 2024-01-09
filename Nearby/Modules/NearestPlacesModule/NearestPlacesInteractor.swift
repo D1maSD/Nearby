@@ -13,13 +13,31 @@ class NearestPlacesInteractor: PresenterToInteractorNearestPlacesProtocol {
     // MARK: Properties
     var presenter: InteractorToPresenterNearestPlacesProtocol?
     var locations: [Location] = []
-    func numberOfRowsInSection() -> Int {
-        locations = AuthService.shared.getLocations()
-        return locations.count
+    var count: Int = 0
+    func numberOfRowsInSection(completion: @escaping (Int) -> Void) {
+        LocationService.shared.getLocations { result in
+            switch result {
+                case .success(let locations):
+                    self.locations = locations
+                    completion(locations.count)
+                case .failure(let failure):
+                    print("Error: \(failure)")
+                    completion(0)
+            }
+        }
     }
 
-    func getItems() -> [Location] {
-        locations = AuthService.shared.getLocations()
-        return locations
+
+    func getItems(completion: @escaping ([Location]) -> Void) {
+        LocationService.shared.getLocations { result in
+            switch result {
+                case .success(let locations):
+                    self.locations = locations
+                    completion(locations)
+                case .failure(let failure):
+                    print("Error: \(failure)")
+                    completion([Location]())
+            }
+        }
     }
 }

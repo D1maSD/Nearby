@@ -129,7 +129,6 @@ extension YourOrderViewController: OrderCellDelegate {
             var menuItem = items[indexPath.row]
         items[indexPath.row].value = value
         menuItem.value = value
-        print("items: \(items)")
 
     }
     func minusButtonTapped(for cell: OrderCell, value: Int) {
@@ -137,7 +136,6 @@ extension YourOrderViewController: OrderCellDelegate {
             var menuItem = items[indexPath.row]
         items[indexPath.row].value = value
         menuItem.value = value
-        print("items: \(items)")
     }
 }
 

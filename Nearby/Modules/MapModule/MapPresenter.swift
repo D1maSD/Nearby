@@ -22,6 +22,11 @@ class MapPresenter: ViewToPresenterMapProtocol {
     func backButtonTapped() {
         router?.backButtonTapped()
     }
+    func getItems(completion: @escaping ([Location]) -> Void) {
+        interactor?.getItems { locations in
+            completion(locations)
+        }
+    }
 }
 
 extension MapPresenter: InteractorToPresenterMapProtocol {

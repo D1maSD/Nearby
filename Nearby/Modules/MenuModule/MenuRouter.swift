@@ -22,9 +22,7 @@ class MenuRouter: PresenterToRouterMenuProtocol {
         let viewController = MenuViewController(collectionManager: collectionManager)
         let router = MenuRouter()
         
-        print(" createModule presenter.id  \(presenter.id)")
         viewController.presenter = presenter
-//        viewController.presenter?.id = id
         viewController.presenter?.router = router
         viewController.presenter?.view = viewController
         viewController.presenter?.interactor = MenuInteractor()

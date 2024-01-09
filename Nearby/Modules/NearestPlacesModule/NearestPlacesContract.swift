@@ -23,10 +23,10 @@ protocol ViewToPresenterNearestPlacesProtocol {
     var router: PresenterToRouterNearestPlacesProtocol? { get set }
     var locations: [Location] { get set }
 
-    func numberOfRowsInSection() -> Int
+    func numberOfRowsInSection(completion: @escaping (Int) -> Void)
     func presentWithId(id: Int)
     func backButtonTapped()
-    func getItems() -> [Location]
+    func getItems(completion: @escaping ([Location]) -> Void)
     func onMapTapped()
 }
 
@@ -35,8 +35,9 @@ protocol ViewToPresenterNearestPlacesProtocol {
 protocol PresenterToInteractorNearestPlacesProtocol {
     
     var presenter: InteractorToPresenterNearestPlacesProtocol? { get set }
-    func numberOfRowsInSection() -> Int
-    func getItems() -> [Location]
+    func numberOfRowsInSection(completion: @escaping (Int) -> Void)
+    func getItems(completion: @escaping ([Location]) -> Void)
+    
 }
 
 

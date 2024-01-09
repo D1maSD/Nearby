@@ -185,7 +185,7 @@ final class MainHeaderView: UIView {
         let rightView = UIView()
         let imageView = UIImageView()
         let tapGesture = UITapGestureRecognizer()
-        imageView.image = UIImage(named: "backArrowWhite") //Asset.geoPoint
+        imageView.image = UIImage(named: "backArrowWhite")
         rightView.addSubview(imageView)
         imageView.snp.makeConstraints { make in
             make.top.equalToSuperview()

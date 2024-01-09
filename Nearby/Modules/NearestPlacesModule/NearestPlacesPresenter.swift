@@ -15,13 +15,18 @@ class NearestPlacesPresenter: ViewToPresenterNearestPlacesProtocol {
     var router: PresenterToRouterNearestPlacesProtocol?
     var locations: [Location] = []
 
-    func numberOfRowsInSection() -> Int {
-        interactor?.numberOfRowsInSection() ?? 0
+    func numberOfRowsInSection(completion: @escaping (Int) -> Void) {
+        interactor?.numberOfRowsInSection { count in
+            completion(count)
+        }
     }
 
-    func getItems() -> [Location] {
-        return interactor?.getItems() ?? [Location]()
+    func getItems(completion: @escaping ([Location]) -> Void) {
+        interactor?.getItems { locations in
+            completion(locations)
+        }
     }
+
     func presentWithId(id: Int) {
         router?.presentWithId(id: id)
     }

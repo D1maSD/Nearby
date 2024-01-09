@@ -28,12 +28,20 @@ final class MapViewController: BaseControllerWithHeader {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        locations = AuthService.shared.getLocations()
+        getItems()
         setupLayout()
         contentView.addSubview(mapView)
         map = mapView.mapWindow.map
         move()
-        addPlacemarks()
+    }
+
+    private func getItems() {
+        presenter?.getItems { [weak self] locations in
+            DispatchQueue.main.async {
+                self?.locations = locations
+                self?.addPlacemarks()
+            }
+        }
     }
 
     // Пример обработчика нажатия на метку, отображающего информацию о точке

@@ -83,8 +83,6 @@ import SnapKit
 
 class BaseViewController: UIViewController {
 
-//    var reachabilityManager: ReachabilityManagerBridgeProtocol?
-
     var backTap: (() -> Void)?
     var navigationBar: CustomNavigationBarView?
     var rightButttonTap: (() -> Void)?
@@ -94,25 +92,12 @@ class BaseViewController: UIViewController {
         return view.theRightDistanceFromTheTop() + addedToTopOffset
     }
     var needToMoveScreenWithKeyboard: Bool { false }
-//    var customTabBar: CustomTabBar? {
-//        guard
-//            let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-//            let tabBarController = appDelegate.window?.rootViewController as? TabBarController
-//        else { return nil }
-//        return tabBarController.customTabBar
-//    }
-
-//    var containerBottomOffset: Int {
-//        Int((customTabBar?.frame.height ?? 56) + safeAreaBottomPadding)
-//    }
 
     var contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         return view
     }()
-
-//    private let plug = UniverslaLostConnectionPlug()
 
     private var safeAreaBottomPadding: CGFloat {
         let window = UIApplication.shared.windows.first
@@ -128,7 +113,6 @@ class BaseViewController: UIViewController {
     }()
 
     private var plugShown: Bool = false
-//    private var plugView = PlugView()
     private var addedToTopOffset: CGFloat
     private var viewForKeyboardBinding: UIView?
     private var originYKeyBindingView: CGFloat?
@@ -145,7 +129,6 @@ class BaseViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-//        reachabilityManager = ReachabilityManagerBridge()
         view.backgroundColor = UIColor(hex:"#FAF9F9")
     }
 
@@ -160,52 +143,15 @@ class BaseViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         view.endEditing(true)
-//        plug.remove()
         plugShown = false
-//        removeKeyboardObservers()
     }
 
     func bindKeyboard(_ viewBinding: UIView, originY: CGFloat? = nil, cancelsTouchesInView: Bool = false) {
         viewForKeyboardBinding = viewBinding
         originYKeyBindingView = originY
-//        removeKeyboardObservers()
-//        registerKeyboardObservers(cancelsTouchesInView: cancelsTouchesInView)
     }
-
-//    func showPlugView(type: PlugViewType,
-//                      viewForBindingTop: ConstraintRelatableTarget,
-//                      topOffset: Int = 0,
-//                      addToBottomOffset: Int = 0,
-//                      buttonTap: @escaping () -> Void?) {
-//        plugView.isHidden = false
-//        plugView.configure(type: type, completion: buttonTap)
-//        contentView.addSubview(plugView)
-//        plugView.snp.makeConstraints { make in
-//            make.top.equalTo(viewForBindingTop).offset(topOffset)
-//            make.leading.trailing.equalToSuperview()
-//            make.bottom.equalTo(contentView.safeAreaLayoutGuide.snp.bottom).offset(-56 - addToBottomOffset)
-//        }
-//        if type == .createEvent { plugView.isUserInteractionEnabled = false }
-//    }
-//
-//    func hidePlugView() {
-//        plugView.isHidden = true
-//    }
 }
 
-//extension BaseViewController: KeyboardPresentable {
-//    func keyboardWillShow(_ notification: Notification) {
-//        keyboardWillShow(notification: notification as NSNotification)
-//    }
-//
-//    func dismissKeyboard(_ recognizer: UITapGestureRecognizer) {
-//        view.endEditing(true)
-//    }
-//
-//    func keyboardWillHide(_ notification: Notification) {
-//        keyboardWillHide(notification: notification as NSNotification)
-//    }
-//}
 
 // MARK: Simple Keyboard bind methods
 extension BaseViewController {
@@ -290,35 +236,6 @@ extension BaseViewController {
         }
     }
 }
-
-//extension BaseViewController: LostConnectionHandler {
-//    func bindInternetConnectionObserver() {
-//        reachabilityManager?.reachability.internetAccessibility = { type in
-//            switch type {
-//            case .reachable:
-//                Toast.show(type: .internetConnectionRestored)
-//            case .unreachable:
-//                Toast.show(type: .noInternetConnection)
-//            }
-//        }
-//    }
-
-//    func internetLost(addTopOffset: CGFloat = 0, internetRestored: @escaping () -> Void) {
-//        if !plugShown {
-//            plugShown = true
-//            view.layoutIfNeeded()
-//            plug.show(containerBottomOffset: containerBottomOffset,
-//                      containerTopOffset: Int(UIScreen.main.bounds.height - contentView.frame.height + addTopOffset)) { [weak self] in
-//                guard let isRechable = self?.reachabilityManager?.reachability.isReachable else { return }
-//                if isRechable {
-//                    self?.plug.remove()
-//                    self?.plugShown = false
-//                    internetRestored()
-//                }
-//            }
-//        }
-//    }
-//}
 
 protocol LostConnectionHandler: BaseViewController {
     func bindInternetConnectionObserver()

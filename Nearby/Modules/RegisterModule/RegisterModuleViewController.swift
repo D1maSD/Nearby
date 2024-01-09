@@ -45,7 +45,6 @@ final class RegisterModuleViewController: BaseControllerWithHeader {
 
     lazy var passwordTextField: TextField = {
         let textField = TextField()
-//        textField.isSecureTextEntry = true
         textField.placeholder = "Password"
         textField.layer.cornerRadius = 25
         textField.autocapitalizationType = .none
@@ -57,7 +56,6 @@ final class RegisterModuleViewController: BaseControllerWithHeader {
 
     lazy var confirmPasswordTextField: TextField = {
         let textField = TextField()
-//        textField.isSecureTextEntry = true
         textField.placeholder = "Confirm password"
         textField.layer.cornerRadius = 25
         textField.autocapitalizationType = .none
