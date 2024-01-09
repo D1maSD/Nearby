@@ -5,5 +5,14 @@ To start use this app you need do this simple steps:
 
 
 <img width="275" alt="image" src="https://github.com/D1maSD/Nearby/assets/93784266/09ecd910-64a1-4777-809a-5f73cb192cd3"> <img width="275" alt="image" src="https://github.com/D1maSD/Nearby/assets/93784266/e9a339fc-215f-4632-8a97-7341c423a498">
+<img width="275" alt="image" src="https://github.com/D1maSD/Nearby/assets/93784266/ffbc1036-e82f-4953-a702-eee3264011dd"> <img width="275" alt="image" src="https://github.com/D1maSD/Nearby/assets/93784266/211842d0-0c19-41d9-8546-161632f731ed">
+<img width="275" alt="image" src="https://github.com/D1maSD/Nearby/assets/93784266/c4e15a7e-e74a-4217-8272-ff13de21e131"> 
+
+
+
+
+
+
+
 
 
