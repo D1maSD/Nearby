@@ -46,6 +46,7 @@ final class RegisterModuleViewController: BaseControllerWithHeader {
     lazy var passwordTextField: TextField = {
         let textField = TextField()
         textField.placeholder = "Password"
+        textField.isSecureTextEntry = true
         textField.layer.cornerRadius = 25
         textField.autocapitalizationType = .none
         textField.backgroundColor = .defaultGrayTextFieldColor
@@ -57,6 +58,7 @@ final class RegisterModuleViewController: BaseControllerWithHeader {
     lazy var confirmPasswordTextField: TextField = {
         let textField = TextField()
         textField.placeholder = "Confirm password"
+        textField.isSecureTextEntry = true
         textField.layer.cornerRadius = 25
         textField.autocapitalizationType = .none
         textField.backgroundColor = .defaultGrayTextFieldColor
