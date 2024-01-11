@@ -114,16 +114,7 @@ final class LoginModuleViewController: BaseControllerWithHeader {
         guard let email = emailTextField.text, !email.isEmpty, let password = passwordTextField.text, !password.isEmpty else {
             return
         }
-        AuthService.shared.loginButtonPressed(email, password, completion: { result in
-            switch result {
-            case .success(_):
-                DispatchQueue.main.async {
-                    self.navigationController?.pushViewController(NearestPlacesRouter.createModule(), animated: true)
-                }
-            case .failure(let failure):
-                print(failure.localizedDescription)
-            }
-        })
+        presenter?.signIn(emailField: email, passwordField: password)
     }
 }
 

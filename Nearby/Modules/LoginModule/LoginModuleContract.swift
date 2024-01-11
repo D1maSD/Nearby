@@ -21,6 +21,8 @@ protocol ViewToPresenterLoginModuleProtocol {
     var view: PresenterToViewLoginModuleProtocol? { get set }
     var interactor: PresenterToInteractorLoginModuleProtocol? { get set }
     var router: PresenterToRouterLoginModuleProtocol? { get set }
+
+    func signIn(emailField: String, passwordField: String)
 }
 
 
@@ -28,16 +30,17 @@ protocol ViewToPresenterLoginModuleProtocol {
 protocol PresenterToInteractorLoginModuleProtocol {
     
     var presenter: InteractorToPresenterLoginModuleProtocol? { get set }
+    func signIn(email: String, password: String)
 }
 
 
 // MARK: Interactor Output (Interactor -> Presenter)
 protocol InteractorToPresenterLoginModuleProtocol {
-    
+    func didRecieve(result: Result<Void, Error>)
 }
 
 
 // MARK: Router Input (Presenter -> Router)
 protocol PresenterToRouterLoginModuleProtocol {
-    
+    func presentNearestPlaces()
 }

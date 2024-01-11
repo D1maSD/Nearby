@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MenuInteractor: PresenterToInteractorMenuProtocol {
+final class MenuInteractor: PresenterToInteractorMenuProtocol {
 
     
     // MARK: Properties

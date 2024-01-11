@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class RegisterModuleRouter: PresenterToRouterRegisterModuleProtocol {
+final class RegisterModuleRouter: PresenterToRouterRegisterModuleProtocol {
 
     weak var rootViewController: UIViewController?
     var loginRouter = LoginModuleRouter()

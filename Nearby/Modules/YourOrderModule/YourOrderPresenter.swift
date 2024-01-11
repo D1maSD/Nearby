@@ -7,7 +7,7 @@
 //
 
 
-class YourOrderPresenter: ViewToPresenterYourOrderProtocol {
+final class YourOrderPresenter: ViewToPresenterYourOrderProtocol {
 
     // MARK: Properties
     var view: PresenterToViewYourOrderProtocol?

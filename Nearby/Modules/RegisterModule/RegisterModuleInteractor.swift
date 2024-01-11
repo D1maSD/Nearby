@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RegisterModuleInteractor: PresenterToInteractorRegisterModuleProtocol {
+final class RegisterModuleInteractor: PresenterToInteractorRegisterModuleProtocol {
 
     // MARK: Properties
     var presenter: InteractorToPresenterRegisterModuleProtocol?

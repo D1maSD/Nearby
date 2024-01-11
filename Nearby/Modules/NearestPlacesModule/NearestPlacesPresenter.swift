@@ -7,7 +7,7 @@
 //
 
 
-class NearestPlacesPresenter: ViewToPresenterNearestPlacesProtocol {
+final class NearestPlacesPresenter: ViewToPresenterNearestPlacesProtocol {
 
     // MARK: Properties
     var view: PresenterToViewNearestPlacesProtocol?

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class YourOrderRouter: PresenterToRouterYourOrderProtocol {
+final class YourOrderRouter: PresenterToRouterYourOrderProtocol {
 
     weak var viewController: UIViewController?
     

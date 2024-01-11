@@ -9,7 +9,7 @@
 import UIKit
 
 
-class YourOrderViewController: BaseControllerWithHeader {
+final class YourOrderViewController: BaseControllerWithHeader {
 
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {

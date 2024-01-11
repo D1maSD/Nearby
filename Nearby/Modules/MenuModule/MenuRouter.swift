@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class MenuRouter: PresenterToRouterMenuProtocol {
+final class MenuRouter: PresenterToRouterMenuProtocol {
 
     weak var viewController: UIViewController?
     

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class LoginModuleRouter: PresenterToRouterLoginModuleProtocol {
+final class LoginModuleRouter: PresenterToRouterLoginModuleProtocol {
     weak var viewController: UIViewController?
     // MARK: Static methods
     static func createModule() -> BaseViewController {
@@ -27,6 +27,12 @@ class LoginModuleRouter: PresenterToRouterLoginModuleProtocol {
         router.viewController = viewController
         
         return viewController
+    }
+
+    func presentNearestPlaces() {
+        DispatchQueue.main.async { [weak self] in
+            self?.viewController?.navigationController?.pushViewController(NearestPlacesRouter.createModule(), animated: true)
+        }
     }
     
 }

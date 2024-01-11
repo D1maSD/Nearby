@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NearestPlacesInteractor: PresenterToInteractorNearestPlacesProtocol {
+final class NearestPlacesInteractor: PresenterToInteractorNearestPlacesProtocol {
 
     // MARK: Properties
     var presenter: InteractorToPresenterNearestPlacesProtocol?

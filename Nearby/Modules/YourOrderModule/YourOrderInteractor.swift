@@ -8,7 +8,7 @@
 
 import Foundation
 
-class YourOrderInteractor: PresenterToInteractorYourOrderProtocol {
+final class YourOrderInteractor: PresenterToInteractorYourOrderProtocol {
 
     // MARK: Properties
     var presenter: InteractorToPresenterYourOrderProtocol?

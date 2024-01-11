@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MenuViewController: BaseCollectionViewController {
+final class MenuViewController: BaseCollectionViewController {
 
 
     // MARK: - Lifecycle Methods
@@ -24,9 +24,7 @@ class MenuViewController: BaseCollectionViewController {
     }
 
     private func getCatigories() {
-        var array = [CategoryModel(id: 1, title: "1"), CategoryModel(id: 2, title: "2"), CategoryModel(id: 3, title: "3"),CategoryModel(id: 4, title: "4"),CategoryModel(id: 5, title: "5"),CategoryModel(id: 6, title: "6")]
-        let configurators = array.map { MainCategoriesCollectionConfigurator(model: $0) }
-        collectionManager?.update(configurators: configurators)
+        
     }
 
     override init(collectionManager: MainCollectionManagment) {

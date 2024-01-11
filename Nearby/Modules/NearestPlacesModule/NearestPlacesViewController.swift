@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NearestPlacesViewController: BaseControllerWithHeader {
+final class NearestPlacesViewController: BaseControllerWithHeader {
 
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {

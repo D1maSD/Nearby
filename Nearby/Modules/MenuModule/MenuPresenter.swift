@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MenuPresenter: ViewToPresenterMenuProtocol {
+final class MenuPresenter: ViewToPresenterMenuProtocol {
 
     // MARK: Properties
     var view: PresenterToViewMenuProtocol?

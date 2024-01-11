@@ -8,8 +8,14 @@
 
 import Foundation
 
-class LoginModuleInteractor: PresenterToInteractorLoginModuleProtocol {
+final class LoginModuleInteractor: PresenterToInteractorLoginModuleProtocol {
 
     // MARK: Properties
     var presenter: InteractorToPresenterLoginModuleProtocol?
+
+    func signIn(email: String, password: String) {
+        AuthService.shared.loginButtonPressed(email, password, completion:{ [weak self] result in
+            self?.presenter?.didRecieve(result: result)
+        })
+    }
 }

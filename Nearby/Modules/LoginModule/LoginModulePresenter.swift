@@ -8,7 +8,12 @@
 
 import Foundation
 
-class LoginModulePresenter: ViewToPresenterLoginModuleProtocol {
+final class LoginModulePresenter: ViewToPresenterLoginModuleProtocol {
+
+    func signIn(emailField: String, passwordField: String) {
+        interactor?.signIn(email: emailField, password: passwordField)
+    }
+
 
     // MARK: Properties
     var view: PresenterToViewLoginModuleProtocol?
@@ -17,5 +22,13 @@ class LoginModulePresenter: ViewToPresenterLoginModuleProtocol {
 }
 
 extension LoginModulePresenter: InteractorToPresenterLoginModuleProtocol {
-    
+    func didRecieve(result: Result<Void, Error>) {
+        switch result {
+            case .success(_):
+            router?.presentNearestPlaces()
+
+            case .failure(let failure):
+            print("Не удалось войти в аккаунт: \(failure.localizedDescription)")
+            }
+    }
 }

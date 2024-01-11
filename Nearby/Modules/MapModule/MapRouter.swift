@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class MapRouter: PresenterToRouterMapProtocol {
+final class MapRouter: PresenterToRouterMapProtocol {
 
     weak var viewController: UIViewController?
     

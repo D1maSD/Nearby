@@ -8,7 +8,7 @@
 
 import MapKit
 
-class MapInteractor: PresenterToInteractorMapProtocol {
+final class MapInteractor: PresenterToInteractorMapProtocol {
     typealias MapArray = MKAnnotation
 
     // MARK: Properties

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MapPresenter: ViewToPresenterMapProtocol {
+final class MapPresenter: ViewToPresenterMapProtocol {
 
     // MARK: Properties
     var view: PresenterToViewMapProtocol?

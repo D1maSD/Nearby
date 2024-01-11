@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class NearestPlacesRouter: PresenterToRouterNearestPlacesProtocol {
+final class NearestPlacesRouter: PresenterToRouterNearestPlacesProtocol {
 
     weak var viewController: UIViewController?
     // MARK: Static methods

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RegisterModulePresenter: ViewToPresenterRegisterModuleProtocol {
+final class RegisterModulePresenter: ViewToPresenterRegisterModuleProtocol {
 
     // MARK: Properties
     var view: PresenterToViewRegisterModuleProtocol?
