@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginModuleViewController: BaseControllerWithHeader {
+final class LoginModuleViewController: BaseControllerWithHeader {
 
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
