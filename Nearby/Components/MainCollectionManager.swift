@@ -124,8 +124,7 @@ extension MainCollectionManager: UICollectionViewDelegate, UICollectionViewDeleg
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let configurator = configurators[indexPath.row]
-        delegate?.selectCell(category: configurator.model)
+        
     }
 }
 
